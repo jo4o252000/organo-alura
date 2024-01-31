@@ -1,10 +1,11 @@
+import { useState } from 'react'
 import Button from '../Button'
 import Select from '../Select'
 import CampoText from '../TextField'
 import './form.css'
 
-const Form = () => {
-    const teams = [
+const Form = (props) => {
+    const teamsList = [
         'Programação',
         'Front-end',
         'Data Science',
@@ -12,18 +13,29 @@ const Form = () => {
         'Ui-Ux'
     ]
 
+    const [name, setName] = useState('')
+    const [cargo, setCargo] = useState('')
+    const [image, setImage] = useState('')
+    const [teams, setTeams] = useState('')
+
     const saveForm = (event) => {
         event.preventDefault()
-        console.log('form foi caraio')
+        props.registerCollaborator({
+            name,
+            cargo,
+            image,
+            teams
+        })
     }
     return(
         <section className="form">
             <form onSubmit={saveForm}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <CampoText required = {false} label="nome" placeholder="Digite seu nome"/>
-                <CampoText label="cargo" placeholder="Digite seu cargo"/>
-                <CampoText label="imagem" placeholder="Digite o endereço da imagem"/>
-                <Select label="Time" itens={teams}/>
+                {/* O use state sempre vai atualizar o set... e apartir dessa atualização o valor e passado para a variavel(ele é usado para sempre mostrar para o react que foi atualizado e precisa recarregar o componente ) */}
+                <CampoText required = {false} label="nome" placeholder="Digite seu nome" value={name} valueInput={value => setName(value)}/>
+                <CampoText label="cargo" placeholder="Digite seu cargo" value={cargo} valueInput={value => setCargo(value)}/> 
+                <CampoText label="imagem" placeholder="Digite o endereço da imagem"  value={image} valueInput={value => setImage(value)}/>
+                <Select label="Time" itens={teamsList} value={teams} valueInput={value => setTeams(value)}/>
                 <Button>
                     Criar Card
                 </Button>
