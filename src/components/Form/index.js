@@ -5,13 +5,7 @@ import CampoText from '../TextField'
 import './form.css'
 
 const Form = (props) => {
-    const teamsList = [
-        'Programação',
-        'Front-end',
-        'Data Science',
-        'Devops',
-        'Ui-Ux'
-    ]
+    
 
     const [name, setName] = useState('')
     const [cargo, setCargo] = useState('')
@@ -26,6 +20,10 @@ const Form = (props) => {
             image,
             teams
         })
+        setName('')
+        setCargo('')
+        setImage('')
+        setTeams('')
     }
     return(
         <section className="form">
@@ -35,7 +33,7 @@ const Form = (props) => {
                 <CampoText required = {false} label="nome" placeholder="Digite seu nome" value={name} valueInput={value => setName(value)}/>
                 <CampoText label="cargo" placeholder="Digite seu cargo" value={cargo} valueInput={value => setCargo(value)}/> 
                 <CampoText label="imagem" placeholder="Digite o endereço da imagem"  value={image} valueInput={value => setImage(value)}/>
-                <Select label="Time" itens={teamsList} value={teams} valueInput={value => setTeams(value)}/>
+                <Select label="Time" itens={props.teams} value={teams} valueInput={(value) => {setTeams(value); console.log(value)}}/>
                 <Button>
                     Criar Card
                 </Button>
