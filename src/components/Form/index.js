@@ -23,7 +23,7 @@ const Form = (props) => {
         setName('')
         setCargo('')
         setImage('')
-        setTeams('')
+        setTeams('...')
     }
     return(
         <section className="form">

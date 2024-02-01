@@ -5,6 +5,7 @@ const Select = (props) => {
         <div className="select">
             <label>{props.label}</label>
             <select onChange={event => props.valueInput(event.target.value)} value={props.value} >
+                <option></option>
                 {props.itens.map((item) => <option key={item}>{item}</option> )}
             </select>
         </div>
